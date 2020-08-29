@@ -38,6 +38,9 @@ const SearchInput = styled.input`
   border-style: none;
   border-radius: 5px;
   background: #331a33;
+  &:focus {
+    outline: none;
+  }
 `;
 
 function Home() {
