@@ -1,7 +1,7 @@
 import React from 'react';
 import IconOctocat from '../assets/github-icon-light.png';
 
-export default function Search() {
+function Search() {
   return (
     <div className='search-container'>
       <div className='gh-icon'>
@@ -11,3 +11,5 @@ export default function Search() {
     </div>
   );
 }
+
+export default Search;
