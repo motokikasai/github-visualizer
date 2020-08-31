@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import IconOctocat from '../assets/github-icon-light.png';
 import Corner from '../components/Corner.js';
@@ -45,13 +45,17 @@ function Home() {
   const [username, setUsername] = useState('');
   const handleChange = e => setUsername(e.target.value);
 
+  let history = useHistory();
+
   return (
     <HomeContainer>
       <Corner />
       <form
+        autocomplete='off'
         onSubmit={e => {
           e.preventDefault();
-          // Routing logic...
+
+          history.push('/user');
 
           setUsername('');
         }}

@@ -1,0 +1,4 @@
+input:-internal-autofill-selected {
+  background-color: #331a33 !important;
+  color: hotpink !important;
+}
