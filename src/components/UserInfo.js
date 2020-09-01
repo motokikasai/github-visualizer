@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import background from '../static/assets/bg-stary-night.png';
 import {
   BriefcaseIcon,
   CalendarIcon,
@@ -11,10 +12,10 @@ const Section = styled.section`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 60vh;
   background: #000f1d;
   color: white;
   font-size: 1.2rem;
+  padding: 50px;
 
   img {
     width: 200px;
@@ -64,6 +65,7 @@ const Section = styled.section`
       & > .num-label {
         padding: 6px;
         color: #b9b9b9;
+        font-size: 1rem;
       }
     }
   }
