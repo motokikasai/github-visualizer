@@ -48,7 +48,7 @@ function UserInfo() {
     <>
       <Section>
         <div className='profile-img'>
-          <img src={IconOctocat} alt='profile picture' />
+          <img src={IconOctocat} alt='profile' />
         </div>
         <h1>My Name here...</h1>
         <div>@motokikasai (eg...)</div>

@@ -46,6 +46,7 @@ function Home() {
   const handleChange = e => setUsername(e.target.value);
 
   let history = useHistory();
+  // console.log(history);
 
   return (
     <HomeContainer>
@@ -55,9 +56,9 @@ function Home() {
         onSubmit={e => {
           e.preventDefault();
 
-          history.push('/user');
+          history.push(`/${username}`);
 
-          setUsername('');
+          // setUsername('');
         }}
       >
         <img src={IconOctocat} alt='Github icon' />
@@ -65,7 +66,7 @@ function Home() {
         <input
           name='username'
           type='text'
-          value={username}
+          // value={username}
           onChange={handleChange}
         />
       </form>
