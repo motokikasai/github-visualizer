@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Charts, Corner, Error, Repos, UserInfo, Footer } from '../components';
 
 function User(props) {
-  console.log(props.match.params.user);
   const username = props.match.params.user;
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState({ active: false, type: 200 });
@@ -18,10 +17,8 @@ function User(props) {
         }
         return response.json();
       })
-      .then(data => {
-        setUserData(data);
-
-        console.log(data);
+      .then(json => {
+        setUserData(json);
       })
       .catch(error => {
         setError({ active: true, type: 400 });
@@ -37,7 +34,7 @@ function User(props) {
     <>
       <Corner />
 
-      <UserInfo userInfo={props} />
+      {userData && <UserInfo userInfo={userData} />}
 
       <Footer />
     </>

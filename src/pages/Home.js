@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import IconOctocat from '../static/assets/github-icon-light.png';
-import Corner from '../components/Corner.js';
+// import Corner from '../components/Corner.js';
 
 const HomeContainer = styled.div`
   display: flex;
@@ -50,7 +50,7 @@ function Home() {
 
   return (
     <HomeContainer>
-      <Corner />
+      {/* <Corner /> */}
       <form
         autoComplete='off'
         onSubmit={e => {
