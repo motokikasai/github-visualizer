@@ -51,7 +51,7 @@ function Home() {
     <HomeContainer>
       {/* <Corner /> */}
       <form
-        autocomplete='off'
+        autoComplete='off'
         onSubmit={e => {
           e.preventDefault();
 

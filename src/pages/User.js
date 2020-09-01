@@ -1,5 +1,6 @@
 import React from 'react';
-import Corner from '../components/Corner';
+// import Corner from '../components/Corner';
+import { Charts, Corner, Error, Repos, UserInfo } from '../components';
 
 function User() {
   return (
