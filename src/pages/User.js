@@ -78,9 +78,9 @@ function User(props) {
 
           {userData && <UserInfo userInfo={userData} />}
 
-          {/* {langData && <Charts langData={langData} repoData={repoData} />} */}
+          {langData && <Charts langData={langData} repoData={repoData} />}
 
-          {/* {repoData && <Repos repoData={repoData} />} */}
+          {repoData && <Repos repoData={repoData} />}
 
           <Footer />
         </>
