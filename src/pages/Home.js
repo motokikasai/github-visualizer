@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import IconOctocat from '../static/assets/github-icon-light.png';
-// import Corner from '../components/Corner.js';
 
 const HomeContainer = styled.div`
   display: flex;
@@ -46,19 +45,15 @@ function Home() {
   const handleChange = e => setUsername(e.target.value);
 
   let history = useHistory();
-  // console.log(history);
 
   return (
     <HomeContainer>
-      {/* <Corner /> */}
       <form
         autoComplete='off'
         onSubmit={e => {
           e.preventDefault();
 
           history.push(`/${username}`);
-
-          // setUsername('');
         }}
       >
         <img src={IconOctocat} alt='Github icon' />
