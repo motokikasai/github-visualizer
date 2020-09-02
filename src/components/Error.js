@@ -9,16 +9,16 @@ const ErrorContainer = styled.div`
   align-items: center;
   flex-direction: column;
   height: 100vh;
-  background: #280a28;
+  background: #180618;
   color: white;
   font-size: 1.8rem;
 
-  form {
+  /* form {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-  }
+  } */
   img {
     width: 80px;
     padding: 20px;
@@ -27,7 +27,7 @@ const ErrorContainer = styled.div`
     font-size: 1.5rem;
     font-weight: bold;
   }
-  input {
+  /* input {
     padding: 10px 28px;
     font-size: 2rem;
     margin: 14px;
@@ -39,7 +39,7 @@ const ErrorContainer = styled.div`
     &:focus {
       outline: none;
     }
-  }
+  } */
 `;
 
 const Error = ({ error }) => {
@@ -66,7 +66,7 @@ const Error = ({ error }) => {
             ) : error.type === 404 ? (
               <p>User not found!</p>
             ) : (
-              <p>Oh no! Something went wrong. Try again later!</p>
+              <p>Something went wrong. Try again later!</p>
             )}
           </div>
         )}

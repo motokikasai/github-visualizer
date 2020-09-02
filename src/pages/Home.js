@@ -8,7 +8,7 @@ const HomeContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: #280a28;
+  background: #180618;
   color: white;
 
   form {
@@ -22,8 +22,9 @@ const HomeContainer = styled.div`
     padding: 20px;
   }
   label {
-    font-size: 1.5rem;
+    font-size: 2.2rem;
     font-weight: bold;
+    padding: 6px;
   }
   input {
     padding: 10px 28px;
@@ -57,7 +58,7 @@ function Home() {
         }}
       >
         <img src={IconOctocat} alt='Github icon' />
-        <label htmlFor='username'>GitHub Handle/Profile</label>
+        <label htmlFor='username'>GitHub Handle/ID</label>
         <input
           name='username'
           type='text'

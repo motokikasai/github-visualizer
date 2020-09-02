@@ -21,7 +21,6 @@ const Section = styled.section`
     width: 200px;
     border: 8px solid #141b2f;
     border-radius: 50%;
-    /* box-shadow: 2px 2px 15px white, -2px -2px 15px gray; */
     box-shadow: 2px 2px 15px rgb(255 255 255 / 0.3),
       -2px -2px 15px rgb(255 255 255 / 0.3);
   }
