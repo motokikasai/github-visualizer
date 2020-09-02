@@ -37,6 +37,8 @@ function User(props) {
           console.log('Error', err);
           setError({ active: true, type: 400 });
         }
+
+        console.log(stats);
         setLangData(stats);
       });
     };

@@ -71,7 +71,7 @@ const Section = styled.section`
 `;
 
 function UserInfo({ userInfo }) {
-  console.log(userInfo);
+  // console.log(userInfo);
   return (
     <>
       <Section>
