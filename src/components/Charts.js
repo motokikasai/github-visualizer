@@ -37,6 +37,8 @@ const Charts = ({ langData, repoData }) => {
 
   // Create Chart for Top Langs
   const [chartLangData, setChartLangData] = useState({});
+  const [chartStarredData, setChartStarredData] = useState({});
+
   // const [chartStarData, setChartStarData] = useState({});
 
   useEffect(() => {
@@ -58,9 +60,29 @@ const Charts = ({ langData, repoData }) => {
     };
 
     // Create Chart for Most Starred
+    const initStarredChart = () => {
+      const filteredRepo = repoData.filter(
+        repo => !repo.fork && repo.stargazers_count > 0
+      );
+      const uniqueLangs = new Set(filteredRepo.map(repo => repo.language));
+      const newArrOfLangs = Array.from(uniqueLangs);
+      const starCounts = filteredRepo.map(repo => repo.stargazers_count);
+      console.log(starCounts);
+
+      setChartStarredData({
+        labels: newArrOfLangs,
+        datasets: [
+          {
+            data: starCounts,
+            borderWidth: 2,
+          },
+        ],
+      });
+    };
 
     initLangChart();
-  }, [langData]);
+    initStarredChart();
+  }, [langData, repoData]);
 
   return (
     <ChartsStyles>
@@ -90,7 +112,7 @@ const Charts = ({ langData, repoData }) => {
         <div className='chart-container'>
           {/* {starChartError && <p>Nothing to see here!</p>} */}
           <Bar
-            data={chartLangData}
+            data={chartStarredData}
             options={{
               legend: {
                 display: false,
