@@ -3,12 +3,21 @@ import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
   text-align: center;
+  color: gray;
+  padding: 20px;
+`;
+
+const ElemSeparator = styled.div`
+  span,
+  a {
+    margin: 0 5px;
+  }
 `;
 
 function Footer() {
   return (
     <StyledFooter>
-      <div>
+      <ElemSeparator>
         <span>Built with</span>
         <a
           href='https://www.chartjs.org/'
@@ -41,7 +50,7 @@ function Footer() {
         >
           React Flip Move
         </a>
-      </div>
+      </ElemSeparator>
     </StyledFooter>
   );
 }

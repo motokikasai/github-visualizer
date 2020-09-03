@@ -34,11 +34,11 @@ function User(props) {
       const me = new GhPolyglot(`${username}`);
       me.userStats((err, stats) => {
         if (err) {
-          console.log('Error', err);
+          // console.log('Error', err);
           setError({ active: true, type: 400 });
         }
 
-        console.log(stats);
+        // console.log(stats);
         setLangData(stats);
       });
     };

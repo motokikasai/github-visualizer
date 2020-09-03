@@ -16,6 +16,7 @@ const Section = styled.section`
   color: white;
   font-size: 1.2rem;
   padding: 50px;
+  padding-bottom: 200px;
 
   img {
     width: 200px;
@@ -71,7 +72,6 @@ const Section = styled.section`
 `;
 
 function UserInfo({ userInfo }) {
-  // console.log(userInfo);
   return (
     <>
       <Section>
