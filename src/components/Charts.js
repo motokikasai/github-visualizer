@@ -17,7 +17,6 @@ const ChartsStyles = styled.div`
 
   .chart {
     background: white;
-    /* max-width: 500px; */
     margin: 5px;
     padding: 18px;
     border-radius: 6px;
@@ -34,36 +33,34 @@ const ChartsStyles = styled.div`
 `;
 
 const Charts = ({ langData, repoData }) => {
-  console.log(langData);
-  // Create chart with Language data
-  const arrayOfLangLabels = [];
-  const arrayOfLangScores = [];
-  const arrayOfLangColors = [];
+  console.log(repoData);
 
-  langData.forEach(langObj => {
-    arrayOfLangLabels.push(langObj.label);
-    arrayOfLangScores.push(langObj.value);
-    arrayOfLangColors.push(langObj.color);
-  });
-
-  const [chartData, setChartData] = useState({});
-
-  const chart = () => {
-    setChartData({
-      labels: arrayOfLangLabels,
-      datasets: [
-        {
-          data: arrayOfLangScores,
-          backgroundColor: arrayOfLangColors,
-          borderWidth: 2,
-        },
-      ],
-    });
-  };
+  // Create Chart for Top Langs
+  const [chartLangData, setChartLangData] = useState({});
+  // const [chartStarData, setChartStarData] = useState({});
 
   useEffect(() => {
-    chart();
-  }, []);
+    const arrayOfLangLabels = langData.map(lang => lang.label);
+    const arrayOfLangScores = langData.map(lang => lang.value);
+    const arrayOfLangColors = langData.map(lang => lang.color);
+
+    const initLangChart = () => {
+      setChartLangData({
+        labels: arrayOfLangLabels,
+        datasets: [
+          {
+            data: arrayOfLangScores,
+            backgroundColor: arrayOfLangColors,
+            borderWidth: 2,
+          },
+        ],
+      });
+    };
+
+    // Create Chart for Most Starred
+
+    initLangChart();
+  }, [langData]);
 
   return (
     <ChartsStyles>
@@ -75,7 +72,7 @@ const Charts = ({ langData, repoData }) => {
         <div className='chart-container'>
           {/* {langChartError && <p>Nothing to see here!</p>} */}
           <Pie
-            data={chartData}
+            data={chartLangData}
             options={{
               legend: {
                 display: true,
@@ -93,7 +90,7 @@ const Charts = ({ langData, repoData }) => {
         <div className='chart-container'>
           {/* {starChartError && <p>Nothing to see here!</p>} */}
           <Bar
-            data={chartData}
+            data={chartLangData}
             options={{
               legend: {
                 display: false,
@@ -110,7 +107,7 @@ const Charts = ({ langData, repoData }) => {
         <div className='chart-container'>
           {/* {thirdChartError && <p>Nothing to see here!</p>} */}
           <Doughnut
-            data={chartData}
+            data={chartLangData}
             options={{
               legend: {
                 display: true,
