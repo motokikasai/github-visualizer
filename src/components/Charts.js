@@ -48,6 +48,7 @@ const Charts = ({ langData, repoData }) => {
 
   const [chartLangData, setChartLangData] = useState({});
   const [chartStarredData, setChartStarredData] = useState({});
+  const [chartPerLangData, setChartPerLangData] = useState({});
 
   useEffect(() => {
     // Create Chart for Top Langs
@@ -91,31 +92,34 @@ const Charts = ({ langData, repoData }) => {
     };
 
     // Create Chart for Star per Lang
-    // const initStarredPerLangChart = () => {
-    //   const filteredRepo = repoData.filter(
-    //     repo => !repo.fork && repo.stargazers_count > 0
-    //   );
-    //   const uniqueLangs = new Set(filteredRepo.map(repo => repo.language));
-    //   const labels = Array.from(uniqueLangs);
-    //   console.log(labels);
-    //   const newArrOfLangs = Array.from(uniqueLangs);
-    //   const starCounts = filteredRepo.map(repo => repo.stargazers_count);
-    //   console.log(starCounts);
+    const initStarredPerLangChart = () => {
+      const filteredRepos = repoData.filter(
+        repo => !repo.fork && repo.stargazers_count > 0
+      );
+      const uniqueLangs = new Set(filteredRepos.map(repo => repo.language));
+      const langLabels = Array.from(uniqueLangs);
+      const starCounts = langLabels.map(lang => {
+        const repos = filteredRepos.filter(repo => repo.language === lang);
+        const starsArr = repos.map(repo => repo.stargazers_count);
+        const starSum = starsArr.reduce((a, b) => a + b, 0);
+        return starSum;
+      });
 
-    //   setChartStarredData({
-    //     labels: newArrOfLangs,
-    //     datasets: [
-    //       {
-    //         data: starCounts,
-    //         backgroundColor: colorsForCharts,
-    //         borderWidth: 2,
-    //       },
-    //     ],
-    //   });
-    // };
+      setChartPerLangData({
+        labels: langLabels,
+        datasets: [
+          {
+            data: starCounts,
+            backgroundColor: colorsForCharts,
+            borderWidth: 2,
+          },
+        ],
+      });
+    };
 
     initLangChart();
     initMostStarredChart();
+    initStarredPerLangChart();
   }, [langData, repoData]);
 
   return (
@@ -163,7 +167,7 @@ const Charts = ({ langData, repoData }) => {
         <div className='chart-container'>
           {/* {thirdChartError && <p>Nothing to see here!</p>} */}
           <Doughnut
-            data={chartLangData}
+            data={chartPerLangData}
             options={{
               legend: {
                 display: true,
