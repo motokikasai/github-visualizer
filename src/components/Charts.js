@@ -32,19 +32,27 @@ const ChartsStyles = styled.div`
   }
 `;
 
+const colorsForCharts = [
+  '#ffadad',
+  '#ffd6a5',
+  '#fdffb6',
+  '#caffbf',
+  '#9bf6ff',
+  '#a0c4ff',
+  '#bdb2ff',
+  '#ffc6ff',
+];
+
 const Charts = ({ langData, repoData }) => {
   console.log(repoData);
 
-  // Create Chart for Top Langs
   const [chartLangData, setChartLangData] = useState({});
   const [chartStarredData, setChartStarredData] = useState({});
 
-  // const [chartStarData, setChartStarData] = useState({});
-
   useEffect(() => {
+    // Create Chart for Top Langs
     const arrayOfLangLabels = langData.map(lang => lang.label);
     const arrayOfLangScores = langData.map(lang => lang.value);
-    const arrayOfLangColors = langData.map(lang => lang.color);
 
     const initLangChart = () => {
       setChartLangData({
@@ -52,7 +60,7 @@ const Charts = ({ langData, repoData }) => {
         datasets: [
           {
             data: arrayOfLangScores,
-            backgroundColor: arrayOfLangColors,
+            backgroundColor: colorsForCharts,
             borderWidth: 2,
           },
         ],
@@ -60,28 +68,54 @@ const Charts = ({ langData, repoData }) => {
     };
 
     // Create Chart for Most Starred
-    const initStarredChart = () => {
-      const filteredRepo = repoData.filter(
-        repo => !repo.fork && repo.stargazers_count > 0
-      );
-      const uniqueLangs = new Set(filteredRepo.map(repo => repo.language));
-      const newArrOfLangs = Array.from(uniqueLangs);
-      const starCounts = filteredRepo.map(repo => repo.stargazers_count);
-      console.log(starCounts);
+    const initMostStarredChart = () => {
+      const LIMIT = 5;
+      const sortProp = 'stargazers_count';
+      const mostStarredRepos = repoData
+        .filter(repo => !repo.fork)
+        .sort((a, b) => b[sortProp] - a[sortProp])
+        .slice(0, LIMIT);
+      const arrOflabels = mostStarredRepos.map(repo => repo.name);
+      const arrOfData = mostStarredRepos.map(repo => repo[sortProp]);
 
       setChartStarredData({
-        labels: newArrOfLangs,
+        labels: arrOflabels,
         datasets: [
           {
-            data: starCounts,
+            data: arrOfData,
+            backgroundColor: colorsForCharts,
             borderWidth: 2,
           },
         ],
       });
     };
 
+    // Create Chart for Star per Lang
+    // const initStarredPerLangChart = () => {
+    //   const filteredRepo = repoData.filter(
+    //     repo => !repo.fork && repo.stargazers_count > 0
+    //   );
+    //   const uniqueLangs = new Set(filteredRepo.map(repo => repo.language));
+    //   const labels = Array.from(uniqueLangs);
+    //   console.log(labels);
+    //   const newArrOfLangs = Array.from(uniqueLangs);
+    //   const starCounts = filteredRepo.map(repo => repo.stargazers_count);
+    //   console.log(starCounts);
+
+    //   setChartStarredData({
+    //     labels: newArrOfLangs,
+    //     datasets: [
+    //       {
+    //         data: starCounts,
+    //         backgroundColor: colorsForCharts,
+    //         borderWidth: 2,
+    //       },
+    //     ],
+    //   });
+    // };
+
     initLangChart();
-    initStarredChart();
+    initMostStarredChart();
   }, [langData, repoData]);
 
   return (
