@@ -20,6 +20,14 @@ function Footer() {
       <ElemSeparator>
         <span>Built with</span>
         <a
+          href='https://reactjs.org/'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          React
+        </a>
+        &middot;
+        <a
           href='https://www.chartjs.org/'
           target='_blank'
           rel='noopener noreferrer'
