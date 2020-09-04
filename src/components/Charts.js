@@ -44,8 +44,6 @@ const colorsForCharts = [
 ];
 
 const Charts = ({ langData, repoData }) => {
-  console.log(repoData);
-
   const [chartLangData, setChartLangData] = useState({});
   const [chartStarredData, setChartStarredData] = useState({});
   const [chartPerLangData, setChartPerLangData] = useState({});
