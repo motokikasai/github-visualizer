@@ -7,6 +7,7 @@ const DropdownStyles = styled.div`
   font-weight: 500;
   .dropdown__button {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     font-size: 14px;
@@ -16,13 +17,14 @@ const DropdownStyles = styled.div`
     color: hotpink;
     background-color: transparent;
     border: 1px solid rgba(0, 118, 255, 0.1);
+    margin-left: 10px;
     padding: 10px 7px;
     border-radius: 5px;
     &:hover,
     &:focus {
       color: hotpink;
-      background: rgba(0, 118, 255, 0.1);
-      border-color: rgba(0, 118, 255, 0.1);
+      background: #f9f9f9;
+      border-color: hotpink;
     }
     svg {
       margin-left: 0.5rem;
@@ -35,20 +37,22 @@ const DropdownStyles = styled.div`
   .dropdown__list {
     position: absolute;
     overflow: hidden;
+    margin: 0;
+    left: 10px;
     width: 100%;
     z-index: 2;
     transition: 0.5s;
     box-shadow: 0 5px 30px -15px rgba(0, 0, 0, 0.2);
     opacity: 0;
     visibility: hidden;
-    background-color: hotpink;
+    background-color: white;
   }
   .dropdown__list-item {
     border-radius: 0;
     transition: 0.5s;
     &:hover,
     &:focus {
-      background-color: hotpink;
+      background-color: white;
     }
     &:first-of-type {
       button {
@@ -64,7 +68,7 @@ const DropdownStyles = styled.div`
     }
     button {
       color: hotpink;
-      background: rgba(0, 118, 255, 0.1);
+      background: white;
       padding: 10px 7px;
       width: 100%;
       font-size: 14px;
@@ -81,7 +85,7 @@ const DropdownStyles = styled.div`
         visibility: visible;
       }
       .dropdown__button {
-        background: rgba(0, 118, 255, 0.1);
+        background: white;
         svg {
           transform: rotate(0.5turn);
         }

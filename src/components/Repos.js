@@ -14,9 +14,15 @@ const ReposStyles = styled.div`
   margin: 0 auto;
   padding: 20px;
 
+  header {
+    display: flex;
+    align-items: center;
+  }
+
   header .dropdown-wrapper {
     display: flex;
     align-items: center;
+    padding-left: 20px;
   }
 
   .repo-list {
@@ -84,8 +90,6 @@ const Repos = ({ repoData }) => {
 
   const sortTypes = ['stars', 'forks', 'size'];
 
-  topRepos.map(repo => console.log(repo.id.toString()));
-
   return (
     <section>
       <ReposStyles>
@@ -122,7 +126,7 @@ const Repos = ({ repoData }) => {
               {topRepos.map(repo => (
                 <Flipped flipId={repo.id} key={repo.id}>
                   <li>
-                    <div class='li-wrapper'>
+                    <div className='li-wrapper'>
                       <a
                         href={repo.html_url}
                         target='_blank'
