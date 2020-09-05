@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-// import FlipMove from 'react-flip-move';
+import DropdownStyles from './styles/DropdownStyles';
+import { Flipper, Flipped } from 'react-flip-toolkit';
 import {
   RepoIcon,
   StarIcon,
@@ -13,6 +14,11 @@ const ReposStyles = styled.div`
   margin: 0 auto;
   padding: 20px;
 
+  header .dropdown-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
   .repo-list {
     /* welll......... */
   }
@@ -25,7 +31,7 @@ const ReposStyles = styled.div`
     margin: 0 auto;
     padding: 20px;
 
-    & li {
+    & li > .li-wrapper {
       background: white;
       padding: 10px;
       border-radius: 5px;
@@ -38,6 +44,10 @@ const ReposStyles = styled.div`
   }
 `;
 
+// const FlipAnimater = forwardRef((props, ref) => (
+//   <div ref={ref}>{props.children}</div>
+// ));
+
 const Repos = ({ repoData }) => {
   //   console.log(repoData);
   const [topRepos, setTopRepos] = useState([]);
@@ -46,7 +56,7 @@ const Repos = ({ repoData }) => {
 
   useEffect(() => {
     const getTopRepos = type => {
-      const LIMIT = 8;
+      const LIMIT = 12;
       const map = {
         stars: 'stargazers_count',
         forks: 'forks_count',
@@ -74,6 +84,8 @@ const Repos = ({ repoData }) => {
 
   const sortTypes = ['stars', 'forks', 'size'];
 
+  topRepos.map(repo => console.log(repo.id.toString()));
+
   return (
     <section>
       <ReposStyles>
@@ -81,65 +93,80 @@ const Repos = ({ repoData }) => {
           <h2>Top Repos</h2>
           <div className='dropdown-wrapper'>
             <span className='label'>by</span>
-            {/* <DropdownStyles active={dropdownOpen}> */}
-            <div>
-              <button
-                className='dropdown__button'
-                onClick={() => toggleDropdown()}
-              >
-                <label>{sortType}</label>
-                <TriangleDownIcon size='small' className='octicon--sm' />
-              </button>
-              <ul className='dropdown__list'>
-                {sortTypes.map((type, i) => (
-                  <li className='dropdown__list-item' key={i}>
-                    <button onClick={() => changeRepoSort(type)}>{type}</button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            {/* </DropdownStyles> */}
+            <DropdownStyles active={dropdownOpen}>
+              <div>
+                <button
+                  className='dropdown__button'
+                  onClick={() => toggleDropdown()}
+                >
+                  <label>{sortType}</label>
+                  <TriangleDownIcon size='small' className='octicon--sm' />
+                </button>
+                <ul className='dropdown__list'>
+                  {sortTypes.map((type, i) => (
+                    <li className='dropdown__list-item' key={i}>
+                      <button onClick={() => changeRepoSort(type)}>
+                        {type}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </DropdownStyles>
           </div>
         </header>
 
         <div className='repo-list'>
-          <ul>
-            {topRepos.map(repo => (
-              <li key={repo.id}>
-                <a href={repo.id} target='_blank' rel='noopener noreferrer'>
-                  <div className='repo__top'>
-                    <div className='repo__name'>
-                      <RepoIcon size='small' className='octicon--sm' />
-                      <h3>{repo.name}</h3>
+          <Flipper flipKey={topRepos}>
+            <ul>
+              {topRepos.map(repo => (
+                <Flipped flipId={repo.id} key={repo.id}>
+                  <li>
+                    <div class='li-wrapper'>
+                      <a
+                        href={repo.html_url}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                      >
+                        <div className='repo__top'>
+                          <div className='repo__name'>
+                            <RepoIcon size='small' className='octicon--sm' />
+                            <h3>{repo.name}</h3>
+                          </div>
+                          <p>{repo.description}</p>
+                        </div>
+                        <div className='repo__stats'>
+                          <div className='repo__stats--left'>
+                            <span>
+                              {/* <div
+                            className='language'
+                            style={{ color: 'red' }}
+                          ></div> */}
+                              {repo.language}
+                            </span>
+                            <span>
+                              <StarIcon size='small' className='octicon--sm' />
+                              {repo.stargazers_count.toLocaleString()}
+                            </span>
+                            <span>
+                              <RepoForkedIcon
+                                size='small'
+                                className='octicon--sm'
+                              />
+                              {repo.forks.toLocaleString()}
+                            </span>
+                          </div>
+                          <div className='repo__stats--right'>
+                            <span>{repo.size.toLocaleString()} KB</span>
+                          </div>
+                        </div>
+                      </a>
                     </div>
-                    <p>{repo.description}</p>
-                  </div>
-                  <div className='repo__stats'>
-                    <div className='repo__stats--left'>
-                      <span>
-                        {/* <div
-                          className='language'
-                          style={{ color: 'red' }}
-                        ></div> */}
-                        {repo.language}
-                      </span>
-                      <span>
-                        <StarIcon size='small' className='octicon--sm' />
-                        {repo.stargazers_count.toLocaleString()}
-                      </span>
-                      <span>
-                        <RepoForkedIcon size='small' className='octicon--sm' />
-                        {repo.forks.toLocaleString()}
-                      </span>
-                    </div>
-                    <div className='repo__stats--right'>
-                      <span>{repo.size.toLocaleString()} KB</span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-            ))}
-          </ul>
+                  </li>
+                </Flipped>
+              ))}
+            </ul>
+          </Flipper>
         </div>
 
         {/* <div className='repo-list'>

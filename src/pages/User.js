@@ -78,7 +78,9 @@ function User(props) {
 
           {userData && <UserInfo userInfo={userData} />}
 
-          {langData && <Charts langData={langData} repoData={repoData} />}
+          {langData && repoData && (
+            <Charts langData={langData} repoData={repoData} />
+          )}
 
           {repoData && <Repos repoData={repoData} />}
 
