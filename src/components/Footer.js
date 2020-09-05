@@ -52,11 +52,11 @@ function Footer() {
         </a>
         &middot;
         <a
-          href='https://github.com/joshwcomeau/react-flip-move'
+          href='https://github.com/aholachek/react-flip-toolkit'
           target='_blank'
           rel='noopener noreferrer'
         >
-          React Flip Move
+          React Flip Toolkit
         </a>
       </ElemSeparator>
     </StyledFooter>
