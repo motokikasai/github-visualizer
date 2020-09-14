@@ -58,7 +58,7 @@ function Home() {
         }}
       >
         <img src={IconOctocat} alt='Github icon' />
-        <label htmlFor='username'>GitHub Handle/ID</label>
+        <label htmlFor='username'>Find your GitHub repo</label>
         <input
           name='username'
           type='text'
