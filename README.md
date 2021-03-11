@@ -4,4 +4,8 @@
 
 <h1 align="center">GitHub Visualizer App</h1>
 
+<p>
+  <img src="./src/static/assets/Thumbnail-readme-github-visualizer.png">  
+</p>
+
 <a href="https://github-visualizer.motokikasai.vercel.app/" target="_blank"><h3 align="center">LIVE</h3></a>
